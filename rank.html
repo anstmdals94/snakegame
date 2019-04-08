@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<head>
+    <meta charset = "utf-8">
+    
+    <title>My Parse App</title>
+    <meta name = "description" content = "My Parse App">
+    <meta name = "viewport" content = "width=device-width">
+    
+    <script src = "https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
+    
+    <script type = "text/javascript" src = "https://npmcdn.com/parse/dist/parse.min.js"></script>
+    
+</head>
+
+<body>
+    <div>
+        <ol id = "addli"></ol>
+    </div>
+    
+    <script type = "text/javascript">
+        Parse.initialize("seungmin");
+        Parse.serverURL = "http://localhost:1337/parse"
+        
+        var GameScore = Parse.Object.extend("GameScore");
+        var query = new Parse.Query(GameScore);
+        
+        query.descending("score");
+        query.find()
+        .then(function(results) {
+            for(var i = 0; i < results.length; i++) {
+                var result = results[i];
+                $("#addli").append("<li>" + result.get("playerName") + " => " + result.get("score") + "점" + "</li>")
+            }
+        })
+    </script>
+</body>
+</html>
