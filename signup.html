@@ -18,25 +18,10 @@
        <p> pw : <input type = "text" id = "password"> </p>
        <p> email : <input type = "text" id = "email"> </p>
        <input type = "button" value = "SIGNUP" onclick = "signup()">
-        <input type = "button", value = "LOGIN" onclick="login()">
     </div>
     <script type = "text/javascript">
         Parse.initialize("seungmin");
         Parse.serverURL = "http://immense-bastion-72940.herokuapp.com/parse"
-        
-        function login() {
-            var id = $("#id").val();
-            var password = $("#password").val();
-            
-            Parse.User.logIn(id, password)
-            .then((user) => {
-                alert("Login Success : Welcome! " + user.get("username"));
-                window.location = "gamesnake.html";
-            }, (error) => {
-                alert("login error : " + error.message);
-                $("#password").val("");
-            });
-        }
         
         function signup(){
             var id = $("#id").val();
